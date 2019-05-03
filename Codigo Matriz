@@ -1,0 +1,69 @@
+#include<stdio.h>
+#include<math.h>
+#include<stdlib.h>
+#define N 8
+#define M 15
+int main() {
+
+int i, j, k;
+    int matrix[N][M];
+    FILE *arq1, *arq2;
+ 
+    arq1=fopen("input.txt","r");
+    arq2=fopen("output.txt","w");
+     
+    if(arq1==NULL)
+    {
+  printf("\nError in na input     file!\n");
+       return 1;
+    } else {
+//////////////////////////////////////////
+
+   for(i=0;i<M;i++) {  
+      for(j=0;j<N;j++) {
+         fscanf(arq1,"%d",&matrix[      j][i]);                           
+         }
+             }           
+
+
+
+
+///////////////////////////////////////// 
+int den[N];
+      float c;
+      for(j=0;j<N;j++) {
+        c=0;             
+        for(i=0;i<M;i++) {  
+          if (matrix[j][i]) c++ ;
+                  }
+             den[j]=(int)c;    
+             fprintf(arq2,"freq %d = %f\n", j, c/M);    
+             } 
+//////////////////////////////////////////
+
+   for(k=0;k<N;k++) {
+    for(j=0;j<N;j++) {
+     c=0;                               for(i=0;i<M;i++) {  
+       if ( matrix[j][i]==1 &&     matrix[k][i]== 1) c++ ;  
+                      }
+      fprintf(arq2,"freq %d dado %d = %f %f %d\n", j, k, c, c/den[j], den[k]);    
+                  }
+             }                     
+//////////////////////////////////////////
+
+      for(i=0;i<M;i++) {
+       for(j=0;j<N;j++) {
+        fprintf(arq2,"%d ", matrix[j][i]);
+                 }
+       fprintf(arq2,"\n");
+             } //////////////////////////////////////////
+
+ }
+ 
+    fclose(arq1);
+    fclose(arq2);
+ 
+    return 0;
+}
+
+
